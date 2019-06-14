@@ -28,10 +28,27 @@ public class MontyhallApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         log.info("Application Started !!");
+
+        log.info("Simulation where the players always switches");
+        simulationBootstrap(true);
+        resetCalculator();
+        log.info("Simulation where the players never switches");
+        simulationBootstrap(false);
+        resetCalculator();
+        log.info("Simulation where the players change their mind at random");
+        simulationBootstrap(null);
+    }
+
+    private void resetCalculator() {
+        winCountNonSwitched.set(0);
+        winCountSwitched.set(0);
+    }
+
+    private void simulationBootstrap(Boolean doesSwitch) {
         long startTime = System.currentTimeMillis();
 
         for(int i  = 0; i < iterations;  i++) {
-            WinType winType =  MontyhallSimulator.randomizeDoorsAndCalculateWins();
+            WinType winType =  MontyhallSimulator.randomizeDoorsAndCalculateWins(doesSwitch);
             incrementWinningCalculator(winType);
         }
 

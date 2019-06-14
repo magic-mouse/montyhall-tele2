@@ -7,12 +7,14 @@ import java.util.Random;
 
 @Slf4j
 public class MontyhallSimulator {
-    public static WinType randomizeDoorsAndCalculateWins() {
+    public static WinType randomizeDoorsAndCalculateWins(Boolean doesSwitch) {
 
         Random r = new Random();
         int selectedDoor = r.nextInt(3);
         int correctDoor = r.nextInt(3);
-        boolean doesSwitch = r.nextBoolean();
+        if(doesSwitch == null){
+            doesSwitch = r.nextBoolean();
+        }
 
         try {
             if (WinningCalculator.calculateIfItIsAWin(selectedDoor, correctDoor, doesSwitch)) {
