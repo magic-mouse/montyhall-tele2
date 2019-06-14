@@ -28,13 +28,17 @@ public class MontyhallApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         log.info("Application Started !!");
-
+        log.info(""); // Added space for easier log readability
         log.info("Simulation where the players always switches");
         simulationBootstrap(true);
+
         resetCalculator();
+        log.info(""); // Added space for easier log readability
         log.info("Simulation where the players never switches");
         simulationBootstrap(false);
+
         resetCalculator();
+        log.info(""); // Added space for easier log readability
         log.info("Simulation where the players change their mind at random");
         simulationBootstrap(null);
     }
